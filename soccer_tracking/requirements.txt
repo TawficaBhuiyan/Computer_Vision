@@ -1,0 +1,6 @@
+pyyaml
+ultralytics
+supervision
+opencv-python
+numpy
+scipy

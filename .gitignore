@@ -1,0 +1,117 @@
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Bytecode
+*.pyc
+*.pyo
+*.pyd
+
+# ==========================
+# Virtual Environments
+# ==========================
+env/
+venv/
+.venv/
+ENV/
+.env
+.env.*
+
+# ==========================
+# IDEs
+# ==========================
+.vscode/
+.idea/
+*.iml
+
+# ==========================
+# Jupyter Notebook
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# Logs
+# ==========================
+logs/
+*.log
+
+# ==========================
+# Temporary Files
+# ==========================
+tmp/
+temp/
+*.tmp
+*.bak
+
+# ==========================
+# Media Files
+# ==========================
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+
+# Images (optional)
+# *.jpg
+# *.jpeg
+# *.png
+
+# ==========================
+# Model Weights
+# ==========================
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+
+# ==========================
+# Datasets
+# ==========================
+datasets/
+data/
+runs/
+
+# ==========================
+# Build Files
+# ==========================
+build/
+dist/
+*.egg-info/
+
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================
+# Cache
+# ==========================
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# ==========================
+# Coverage
+# ==========================
+.coverage
+coverage.xml
+htmlcov/
+
+# ==========================
+# Secrets
+# ==========================
+*.pem
+*.key
+*.crt
+secrets.json
+credentials.json

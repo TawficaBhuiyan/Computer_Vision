@@ -1,0 +1,40 @@
+# ============================================================
+# BoT-SORT + C-BIoU tracker configuration
+# All tunable behavior lives here - never edit code to experiment.
+# ============================================================
+
+# --- Detection confidence bands (ByteTrack-style two-stage) ---
+track_activation_threshold: 0.15   # lowest confidence kept at all (recovery floor)
+high_conf_det_threshold: 0.40      # >= this = "high": stage-1 + may spawn new IDs
+
+# --- Track lifecycle ---
+lost_track_buffer: 90              # frames a confirmed lost track survives
+minimum_consecutive_frames: 3      # hits before a track is "confirmed"
+
+# --- C-BIoU buffered-IoU expansion ratios (cascade) ---
+buffer_ratio_first: 0.30           # b1: stage-1 buffer (tight, precise)
+buffer_ratio_second: 0.60          # b2: stage-2 buffer (loose, recovery)
+
+# --- Buffered-IoU acceptance thresholds ---
+minimum_iou_threshold_first_assoc: 0.20
+minimum_iou_threshold_second_assoc: 0.10
+
+# ============================================================
+# Fast-motion robustness (the main anti-ID-switch knobs)
+# ============================================================
+
+# Track search box grows by this * speed(px/frame) on each side.
+# Raise to 1.5-2.0 if very fast objects still lose their ID.
+motion_buffer_gain: 1.0
+
+# Weight of center-distance in the fused matching cost (helps when overlap = 0).
+center_dist_weight: 0.5
+
+# Stage-1/2 center gate = diag_mult*box_diag + speed_mult*speed (pixels).
+center_gate_diag_mult: 1.2
+center_gate_speed_mult: 1.5
+
+# Stage-3 long-range recovery radius = diag_mult*box_diag + speed_mult*speed.
+# Raise for more recovery; lower if you see wrong merges.
+recovery_diag_mult: 2.5
+recovery_speed_mult: 2.5
