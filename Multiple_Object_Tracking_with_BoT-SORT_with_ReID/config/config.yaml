@@ -1,0 +1,39 @@
+# =====================================================================
+#  Central configuration. Change values here, NEVER hard-code in .py
+# =====================================================================
+
+video:
+  input_path:  "input/input_video.mp4"     # your 1.39 min CCTV clip
+  output_path: "outputs/tracked_output.mp4"
+
+model:
+  # Use the biggest model your GPU allows for best CCTV accuracy.
+  # yolov8x.pt (accurate) | yolov8m.pt (faster) | yolo11x.pt (newest)
+  weights: "yolov8m.pt"
+  device:  "cuda:0"        # "cpu" if you have no GPU (auto-falls back)
+  imgsz:   960            # 1280 for detail; drop to 640 on CPU
+
+  # COCO class ids -> person = 0, sports ball = 32  (do not change)
+  person_class_id: 0
+  ball_class_id:   32
+
+  person_conf: 0.35        # min confidence to accept a person
+  ball_conf:   0.15        # LOW on purpose: ball is small + fast
+  iou:         0.60        # NMS IoU
+
+tracker:
+  # BoT-SORT + ReID = fewest ID switches when people cross/jostle.
+  config: "trackers/botsort_stable.yaml"
+  # For a lighter option use: "trackers/bytetrack_stable.yaml"
+
+smoothing:
+  enable:        true
+  ema_alpha:     0.4       # 0=frozen, 1=raw. Lower = smoother person boxes
+  ball_max_lost: 25        # frames to keep the ball alive when detection drops
+
+visual:
+  person_thickness:  2
+  ball_thickness:    3
+  font_scale:        0.7
+  show_trajectory:   true  # draw the ball path
+  trajectory_length: 32
