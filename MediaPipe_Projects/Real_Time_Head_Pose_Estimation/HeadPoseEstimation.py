@@ -10,7 +10,7 @@ face_mesh = mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_con
 mp_drawing = mp_solutions.drawing_utils
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # ---- Recording setup ----
 frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -83,9 +83,9 @@ while cap.isOpened():
             # Get angles
             angles, mtxR, mtxQ, Qx, Qy, Qz = cv2.RQDecomp3x3(rmat)
 
-            x = angles[0] * 360
-            y = angles[1] * 360
-            z = angles[2] * 360
+            x = angles[0] * 360 #pitch
+            y = angles[1] * 360  #yaw
+            z = angles[2] * 360   #roll
 
             # Where the head is tilting
             if y < -10:
