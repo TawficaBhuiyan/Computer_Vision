@@ -71,7 +71,7 @@ frame (BGR)
 | `config.py` | Landmark indices, body levels, all thresholds, `Orientation` labels | – | – |
 | `landmarks.py` | Safe array access, per-level confidence, bbox, body-fill, image facing cue | – | – |
 | `geometry.py` | Pure body-angle math (yaw, tilt, joint angles, neck) | – | – |
-| `orientation.py` | **Module 3** side-profile classifier (yaw + 3-cue fusion) | – | – |
+| `orientation.py` | **Module 3** side-profile classifier (yaw + 4-cue weighted-vote fusion) | – | – |
 | `head.py` | **Module 4** solvePnP (display) + geometric head level/facing | cv2 | – |
 | `filters.py` | **Module 8** One Euro, EMA, window vote, streak latch | – | ✓ |
 | `validators.py` | **Modules 1,2,5,6,7** + orientation/head gates → `Check` | – | – |
@@ -94,7 +94,7 @@ Check(ok: bool, reason: Optional[str], detail: dict)
 OrientationResult(label, facing, yaw, signed_yaw, hip_yaw, confidence, cues)
 
 # head.py
-HeadPose(yaw, pitch, roll, facing, level, ok)
+HeadPose(yaw, pitch, roll, facing, level, spread, ok)
 
 # gate.py — the single object the UI consumes
 GateResult(valid, ready, streak, label, facing, message,

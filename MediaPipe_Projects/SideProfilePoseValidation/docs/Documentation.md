@@ -717,7 +717,7 @@ python run.py --source webcam
 
 Single image → annotated output image:
 ```bash
-python run.py --source image --input samples/side_profile_left.png --output out/annotated.png
+python run.py --source image --input path/to/photo.png --output out/annotated.png
 ```
 
 Video file → annotated output video:
