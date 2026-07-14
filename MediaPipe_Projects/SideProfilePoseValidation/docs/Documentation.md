@@ -178,7 +178,7 @@ SideProfilePoseValidation/
 ├── docs/
 │   ├── Documentation.md        ← deep research notes: WHY each method was chosen
 │   ├── ARCHITECTURE.md         ← short software-architecture reference
-│   └── MIGRATION.md            ← history: how this project evolved from an older one
+│   
 │
 ├── tests/
 │   └── test_core.py            ← automatic tests (no camera needed)
