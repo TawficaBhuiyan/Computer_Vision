@@ -1,0 +1,7 @@
+# Real-Time Side Profile Full Body Pose Validation System
+# Python 3.10 - 3.12 recommended.
+mediapipe>=0.10.9
+opencv-python>=4.8
+numpy>=1.24
+# optional, for running the unit tests
+pytest>=7.0
