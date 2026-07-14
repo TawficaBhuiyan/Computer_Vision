@@ -1,10 +1,4 @@
-"""
-Detector = YOLO model + Ultralytics' integrated tracker.
-
-We run detection AND tracking in one call (model.track). Doing them
-together lets BoT-SORT's Kalman filter + ReID assign IDs frame-to-frame,
-which is what gives us steady, non-shuffling IDs.
-"""
+"""Detector = YOLO + Ultralytics tracker. PERSONS ONLY. No ball."""
 import torch
 from ultralytics import YOLO
 
@@ -13,6 +7,7 @@ class Detector:
     def __init__(self, cfg):
         self.cfg = cfg
         self.device = self._resolve_device(cfg.model.device)
+        self.half = bool(getattr(cfg.model, "half", False)) and "cuda" in str(self.device)
         self.model = YOLO(cfg.model.weights)
 
     @staticmethod
@@ -23,17 +18,18 @@ class Detector:
         return device
 
     def track(self, frame):
-        """Return the Ultralytics Results object for a single frame."""
+        """Track only PERSONS. Ball OFF."""
         m = self.cfg.model
         results = self.model.track(
             source=frame,
-            persist=True,                       # keep IDs across frames
+            persist=True,
             tracker=self.cfg.tracker.config,
-            classes=[m.person_class_id, m.ball_class_id],
-            conf=min(m.person_conf, m.ball_conf),  # low gate; filter later
+            classes=[m.person_class_id],      # ONLY persons, no ball
+            conf=m.person_conf,
             iou=m.iou,
             imgsz=m.imgsz,
             device=self.device,
+            half=self.half,
             verbose=False,
         )
         return results[0]

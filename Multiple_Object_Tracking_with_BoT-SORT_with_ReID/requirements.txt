@@ -3,3 +3,7 @@ opencv-python>=4.8.0
 numpy>=1.24
 pyyaml>=6.0
 lap>=0.4.0
+torch>=2.0
+torchvision>=0.15
+torchreid==0.2.5
+gdown

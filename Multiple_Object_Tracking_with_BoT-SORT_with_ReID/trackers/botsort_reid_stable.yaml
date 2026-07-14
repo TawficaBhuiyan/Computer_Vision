@@ -1,0 +1,29 @@
+# BoT-SORT + ReID: IDs LOCKED TIGHT
+# Once a person gets ID 1, they stay ID 1 even through occlusion/crossing
+# Strategy: long track_buffer + strict appearance matching via embeddings
+
+tracker_type: botsort
+
+# Detection gates
+track_high_thresh: 0.40      # confident new detections start/continue
+track_low_thresh:  0.10      # weak dets keep existing tracks alive
+new_track_thresh:  0.70      # HIGH threshold = strict on NEW ids
+track_buffer:      240       # ~20s @ 24fps = long memory for occlusion
+match_thresh:      0.80      # IoU strictness
+
+fuse_score: true
+gmc_method: none             # static camera
+
+# ---- ReID: the lock ----
+with_reid: true              # EMBEDDING-based matching
+model: auto                  # native ReID feature extractor
+
+# appearance_thresh = embedding distance (0=perfect match, 1=total different)
+# LOWER = stricter = trust embeddings MORE = stable ids
+appearance_thresh: 0.15      # tight: embeddings are the truth
+
+# proximity_thresh = only use embedding if boxes are reasonably close
+# (avoid matching person A top-left to person Z bottom-right just by appearance)
+proximity_thresh:  0.6       # moderate: boxes must be somewhat nearby
+
+# When embeddings say "yes" + geometry says "close", ID STAYS

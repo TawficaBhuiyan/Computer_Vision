@@ -6,7 +6,6 @@ Entry point. Run from the project root:
 """
 import argparse
 from pathlib import Path
-
 from src.config_loader import load_config
 from src.pipeline import Pipeline
 
