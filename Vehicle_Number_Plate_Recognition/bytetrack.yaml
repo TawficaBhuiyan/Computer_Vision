@@ -1,0 +1,7 @@
+tracker_type: bytetrack
+track_high_thresh: 0.3   # Lowered threshold for easier initial detection
+track_low_thresh: 0.05   # Keeps tracking even if confidence drops slightly
+new_track_thresh: 0.4    
+track_buffer: 90         # Memory buffer: Remembers a vehicle ID for 90 frames (about 3 secs)
+match_thresh: 0.95       # Very high threshold to prevent swapping IDs between two cars
+fuse_score: 0.5          # Minimum score to consider a detection for tracking
